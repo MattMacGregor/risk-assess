@@ -1,0 +1,103 @@
+.timer
+{
+  position:absolute;
+  left: 47%;
+  top: 30%;
+  color:white;
+}
+.navbar
+{
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height: 50px;
+  background-color: #98a3b5;
+}
+.inlineIcon
+{
+  position:relative;
+  float:left;
+}
+.screen
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+.gameControls
+{
+  visibility: hidden;
+}
+.money
+{
+  display: block;
+  position: absolute;
+  right: 5%;
+  top: 30%;
+}
+.ip
+{
+  display:block;
+  position: absolute;
+  left:5%;
+  top: 30%;
+}
+.pagebody
+{
+  position:relative;
+  top:50px;
+  width:100%;
+}
+.pagebottom
+{
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  height:50px;
+  background-color: #98a3b5;
+}
+.chat
+{
+  position:absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 7px;
+  top: 5px;
+  background-color: white;
+}
+.chatInputDiv
+{
+  position:absolute;
+  left: 10px;
+  bottom: 7px;
+  right: 10px;
+  top: 5px;
+}
+.chatInput
+{
+  border: none;
+  padding-left: 5px;
+  padding-right: 5px;
+  width:90%;
+  height:100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+.chatInput:focus
+{
+  outline:2px solid blue;
+}
+.chatInputButton
+{
+  position: absolute;
+  float: right;
+  top: 5px;
+  bottom: 7px;
+  right: 5px;
+  width: 10%;
+}

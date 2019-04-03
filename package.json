@@ -1,0 +1,21 @@
+{
+  "name": "risk-assessment",
+  "version": "0.0.1",
+  "description": "Doesn't matter",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.15.6",
+    "express-socket.io-session": "^1.3.5",
+    "extend": "^3.0.2",
+    "handlebars": "^4.1.0",
+    "helmet": "^3.16.0",
+    "jquery": "^3.3.1",
+    "mongodb": "^3.1.13",
+    "mysql": "^2.16.0",
+    "phaser": "^3.16.2",
+    "rethinkdb": "^2.3.3",
+    "socket.io": "^2.2.0"
+  }
+}
