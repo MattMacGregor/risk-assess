@@ -22,30 +22,49 @@ $(() => {
       event.preventDefault();
       input({
         pressed: "incorrect",
-        answer: currentAnswer
+        answer: currentAnswer,
+        score: score
       });
       if(currentAnswer !== "correct")
       {
         $("#poly").css("fill", "green");
+        changeScore(1.2);
       }
       else {
         $("#poly").css("fill", "red");
+        changeScore(.6);
+        paused = true;
+        $("#game").html('<b>You got one wrong. New Score: ' + score + '</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
       }
     }
     else if(event.key === 'j')
     {
       input({
         pressed: "incorrect",
-        answer: currentAnswer
+        answer: currentAnswer,
+        score: score
       });
       console.log(currentAnswer);
       if(currentAnswer !== "incorrect")
       {
         $("#poly").css("fill", "green");
+        changeScore(1.2);
       }
       else {
         $("#poly").css("fill", "red");
+        changeScore(.6);
+        $("#game").html('<b>You got one wrong. New Score: ' + score + '</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
       }
+    }
+    else if(event.key === ' ')
+    {
+      input({
+        pressed: "pause",
+        answer: currentAnswer,
+        score: score
+      });
+      paused = true;
+      $("#game").html('<b>Paused</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
     }
   });
 });
@@ -64,8 +83,9 @@ $(() => {
 //   socket.emit('chat message', text);
 // }
 var socket = io();
-var money = 0;
+var score = 1000;
 var time = 1000;
+var paused = false;
 function updateTime(){
   document.getElementById("timernumber").innerHTML = time;
 }
@@ -94,15 +114,31 @@ function changeShape(){
   $("#game").html(ngone(500, Math.floor(Math.random() * 4) + 5));
 }
 setInterval(function() { time--; updateTime();}, 1500);
-// function changeMoney(delta){
-//   money += parseInt(delta);
-//   document.getElementById("moneynumber").innerHTML = money;
-// }
+function changeScore(scale){
+  score = parseFloat(scale) * score;
+  document.getElementById("score").innerHTML = money;
+}
 function gameStart()
 {
   $("#gameControls").css("visibility", "visible");
   changeShape();
-  setInterval(function(){changeShape();}, 1000);
+  setInterval(function(){if(!paused){changeShape();}}, 1000);
+}
+function unpause()
+{
+  pause = false;
+  input({
+    pressed:"unpause",
+    score: score
+  })
+}
+function quit()
+{
+  $("#game").html("Thank you for participating<br>Your final score was " + score);
+  input({
+    pressed:"quit",
+    score: score
+  })
 }
 // function earnMoneyClick() {
 //   money += 1;
