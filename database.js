@@ -19,7 +19,7 @@ function addClient(client)
   r.connect(connOptions, function(err, conn){
     var arr = new Array();
     r.db("riskapp").table("clients").insert({username: client.username || null, actions:[]}).run(conn, function(err, results){
-      console.log("Inserted: " + results);
+      console.log("Inserted: " + results + " err: " + err);
     });
   });
 }

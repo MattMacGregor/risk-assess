@@ -122,4 +122,4 @@ function findClientsByUsername(username)
 // }, 50);
 
 //----------START SERVER------------------
-http.listen(port, () => {console.log('Express is listening...');});
+http.listen(port, () => {console.log('Express is listening... on ' + port);});
