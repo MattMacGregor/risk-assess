@@ -53,6 +53,7 @@ $(() => {
       else {
         $("#poly").css("fill", "red");
         changeScore(.6);
+        paused = true;
         $("#game").html('<b>You got one wrong. New Score: ' + score + '</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
       }
     }
@@ -116,7 +117,7 @@ function changeShape(){
 setInterval(function() { time--; updateTime();}, 1500);
 function changeScore(scale){
   score = parseFloat(scale) * score;
-  document.getElementById("score").innerHTML = money;
+  document.getElementById("score").innerHTML = score;
 }
 function gameStart()
 {
