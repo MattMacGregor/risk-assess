@@ -54,7 +54,7 @@ $(() => {
         $("#poly").css("fill", "red");
         changeScore(.6);
         paused = true;
-        $("#game").html('<b>You got one wrong. New Score: ' + score + '</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
+        $("#game").html('<b>You got one wrong. New Score: ' + score + '</b>&nbsp;&nbsp;<button onClick="unpause()">Continue</button>&nbsp;&nbsp;<button onClick="quit()">Quit</button>')
       }
     }
     else if(event.key === ' ')
