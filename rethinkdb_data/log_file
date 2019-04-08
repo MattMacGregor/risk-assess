@@ -572,3 +572,4 @@
 2019-03-26T09:05:10.360901002 0.615504s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.
 2019-03-26T09:05:11.739391691 1.993995s info: Table aa411e9b-9907-46bf-8604-aa75113ad965: Starting a new Raft election for term 6.
 2019-03-26T09:05:11.775650529 2.030254s info: Table aa411e9b-9907-46bf-8604-aa75113ad965: This server is Raft leader for term 6. Latest log index is 15.
+2019-04-07T17:54:45.066718094 86430.154218s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.

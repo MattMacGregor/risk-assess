@@ -17,7 +17,7 @@ $(() => {
   // });
   $(document).bind("keyup", (event)=>
   {
-    if(event.key === 'd')
+    if(event.key === 'd' && !paused)
     {
       event.preventDefault();
       input({
@@ -37,7 +37,7 @@ $(() => {
         $("#game").html('<b>You got one wrong. New Score: ' + score + '</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
       }
     }
-    else if(event.key === 'j')
+    else if(event.key === 'j' && !paused)
     {
       input({
         pressed: "incorrect",
@@ -65,10 +65,14 @@ $(() => {
         score: score
       });
       paused = true;
-      $("#game").html('<b>Paused</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
+      $("#game").html('<b>Paused</b>&nbsp;&nbsp;<button onClick="unpause()">Continue</button>&nbsp;&nbsp;<button onClick="showInstructions();">Show Instructions</button>&nbsp;&nbsp;<button onClick="quit()">Quit</button>')
     }
   });
 });
+function showInstructions()
+{
+  $("#instructions").css("visibility", "visible");
+}
 // $("#chatInput").ready(()=>
 // {
 //   $("#chatInput").bind("keyup", function(event) {
@@ -85,10 +89,15 @@ $(() => {
 // }
 var socket = io();
 var score = 1000;
-var time = 1000;
+var time = 240;
 var paused = false;
 function updateTime(){
   document.getElementById("timernumber").innerHTML = time;
+  if(time == 0)
+  {
+    pause = true;
+    quit();
+  }
 }
 var currentAnswer;
 function ngone(r,n) {
@@ -109,25 +118,27 @@ function ngone(r,n) {
     }
     var dispNumb = ((Math.floor(Math.random() * 2) == 1) ? n : (Math.floor(Math.random() * 4) + 5));
     currentAnswer = (n == dispNumb) ? "correct":"incorrect";
-    return s+'"></polygon><text x="' + r + '" y="' + r + '" text-anchor="middle" alignment-baseline="middle" font-family="Arial" font-weight="900" font-size="400" fill="white">' + dispNumb + '</text></svg>';// + '<br><h1>' + ((Math.floor(Math.random() * 2) == 1) ? n : (Math.floor(Math.random() * 4) + 5)) + '</h1>';
+    return s+'"></polygon><text x="' + r + '" y="' + r + '" text-anchor="middle" alignment-baseline="middle" font-family="Arial" font-weight="900" font-size="200" fill="white">' + dispNumb + '</text></svg>';// + '<br><h1>' + ((Math.floor(Math.random() * 2) == 1) ? n : (Math.floor(Math.random() * 4) + 5)) + '</h1>';
 }
 function changeShape(){
-  $("#game").html(ngone(500, Math.floor(Math.random() * 4) + 5));
+  $("#game").html(ngone(250, Math.floor(Math.random() * 4) + 5));
 }
-setInterval(function() { time--; updateTime();}, 1500);
 function changeScore(scale){
   score = parseFloat(scale) * score;
-  document.getElementById("score").innerHTML = score;
+  $("#scoreNumber").html(score);
 }
 function gameStart()
 {
   $("#gameControls").css("visibility", "visible");
+  $("#instructions").css("visibility", "hidden");
   changeShape();
-  setInterval(function(){if(!paused){changeShape();}}, 1000);
+  setInterval(function() { time--; updateTime();}, 1000);
+  setInterval(function(){if(!paused){changeShape();}}, 1250);
 }
 function unpause()
 {
-  pause = false;
+  $("#instructions").css("visibility", "hidden");
+  paused = false;
   input({
     pressed:"unpause",
     score: score
@@ -136,6 +147,7 @@ function unpause()
 function quit()
 {
   $("#game").html("Thank you for participating<br>Your final score was " + score);
+  $("#instructions").css("visibility", "hidden");
   input({
     pressed:"quit",
     score: score

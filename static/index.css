@@ -19,10 +19,17 @@
   position:relative;
   float:left;
 }
+.bar
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
 .screen
 {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   width: 100%;
   align-items: center;
@@ -48,7 +55,8 @@
 .pagebody
 {
   position:relative;
-  top:50px;
+  text-align: center;
+  top:25px;
   width:100%;
 }
 .pagebottom
