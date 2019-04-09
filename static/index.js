@@ -125,15 +125,32 @@ function changeShape(){
 }
 function changeScore(scale){
   score = parseFloat(scale) * score;
-  $("#scoreNumber").html(score);
+  $("#scoreNumber").html(Math.round(score * 100) / 100);
+}
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
 }
 function gameStart()
 {
   $("#gameControls").css("visibility", "visible");
-  $("#instructions").css("visibility", "hidden");
   changeShape();
-  setInterval(function() { time--; updateTime();}, 1000);
-  setInterval(function(){if(!paused){changeShape();}}, 1250);
+  $("#game").html("3");
+  setTimeout(()=>{
+    $("#game").html("2");
+    setTimeout(()=>{
+      $("#game").html("1");
+      setTimeout(()=>{
+        setInterval(function() { time--; updateTime();}, 1000);
+        setInterval(function(){if(!paused){changeShape();}}, 1250);
+      }, 1000)
+    }, 1000)
+  }, 1000)
+  // setInterval(function() { time--; updateTime();}, 1000);
+  // setInterval(function(){if(!paused){changeShape();}}, 1250);
 }
 function unpause()
 {
