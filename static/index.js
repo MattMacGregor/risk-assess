@@ -136,7 +136,7 @@ function wait(ms){
 }
 function gameStart()
 {
-  $("#gameControls").css("visibility", "visible");
+  $("#instructions").css("visibility", "visible");
   changeShape();
   $("#game").html("3");
   setTimeout(()=>{
