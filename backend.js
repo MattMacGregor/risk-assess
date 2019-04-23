@@ -43,6 +43,8 @@ app.get('/firstvisit.html', (req, res) => {
 app.post('/firstvisit.html', (req, res)=>
 {
   req.session.username = req.body.username;
+  req.session.age = req.body.age;
+  req.session.grade = req.body.grade;
   console.log("Username recieved: " + req.session.username);
   res.redirect("/index.html");
 });

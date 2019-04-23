@@ -25,16 +25,16 @@ $(() => {
         answer: currentAnswer,
         score: score
       });
-      if(currentAnswer !== "correct")
+      if(currentAnswer === "incorrect")
       {
         $("#poly").css("fill", "green");
         changeScore(1.2);
       }
-      else {
+      else if(currentAnswer === "correct"){
         $("#poly").css("fill", "red");
         changeScore(.6);
         paused = true;
-        $("#game").html('<b>You got one wrong. New Score: ' + score + '</b><br><button onClick="unpause()">Continue</button><button onClick="quit()">Quit</button>')
+        setTimeout(()=>{$("#game").html('<b>You got one wrong. New Score: ' + score + '</b>&nbsp;&nbsp;<button onClick="unpause()">Continue</button>&nbsp;&nbsp;<button onClick="quit()">Quit</button>')}, 1000);
       }
     }
     else if(event.key === 'j' && !paused)
@@ -45,16 +45,16 @@ $(() => {
         score: score
       });
       console.log(currentAnswer);
-      if(currentAnswer !== "incorrect")
+      if(currentAnswer === "correct")
       {
         $("#poly").css("fill", "green");
         changeScore(1.2);
       }
-      else {
+      else if(currentAnswer === "incorrect"){
         $("#poly").css("fill", "red");
         changeScore(.6);
         paused = true;
-        $("#game").html('<b>You got one wrong. New Score: ' + score + '</b>&nbsp;&nbsp;<button onClick="unpause()">Continue</button>&nbsp;&nbsp;<button onClick="quit()">Quit</button>')
+        setTimeout(()=>{$("#game").html('<b>You got one wrong. New Score: ' + score + '</b>&nbsp;&nbsp;<button onClick="unpause()">Continue</button>&nbsp;&nbsp;<button onClick="quit()">Quit</button>')}, 1000);
       }
     }
     else if(event.key === ' ')
@@ -67,7 +67,7 @@ $(() => {
       paused = true;
       $("#game").html('<b>Paused</b>&nbsp;&nbsp;<button onClick="unpause()">Continue</button>&nbsp;&nbsp;<button onClick="showInstructions();">Show Instructions</button>&nbsp;&nbsp;<button onClick="quit()">Quit</button>')
     }
-  });
+  });incorrect
 });
 function showInstructions()
 {
@@ -89,11 +89,11 @@ function showInstructions()
 // }
 var socket = io();
 var score = 1000;
-var time = 240;
+var time = 180;
 var paused = false;
 function updateTime(){
   document.getElementById("timernumber").innerHTML = time;
-  if(time == 0)
+  if(time === 0)
   {
     pause = true;
     quit();
@@ -137,13 +137,13 @@ function wait(ms){
 function gameStart()
 {
   $("#instructions").css("visibility", "hidden");
-  changeShape();
   $("#game").html("3");
   setTimeout(()=>{
     $("#game").html("2");
     setTimeout(()=>{
       $("#game").html("1");
       setTimeout(()=>{
+        changeShape();
         setInterval(function() { time--; updateTime();}, 1000);
         setInterval(function(){if(!paused){changeShape();}}, 1250);
       }, 1000)
