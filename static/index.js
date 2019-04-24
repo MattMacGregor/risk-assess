@@ -92,7 +92,8 @@ var score = 1000;
 var time = 180;
 var paused = false;
 function updateTime(){
-  document.getElementById("timernumber").innerHTML = time;
+  if(!pause)
+    document.getElementById("timernumber").innerHTML = time;
   if(time === 0)
   {
     pause = true;
